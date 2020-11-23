@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{luacode}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{multicol}
+
+\title{Squares}
+\author{Peter Rowlett}
+\date{November 2020}
+
+\definecolor{colour1}{rgb}{0.95, 0.95, 0.96}
+\definecolor{colour2}{rgb}{0.98, 0.93, 0.36}
+\definecolor{colour3}{rgb}{0.56, 0.74, 0.56}
+\definecolor{colour4}{rgb}{0.6, 0.33, 0.73}
+\definecolor{colour5}{rgb}{1.0, 1.0, 0.0}
+\definecolor{colour6}{rgb}{0.0, 0.45, 0.73}
+\definecolor{colour7}{rgb}{0.89, 0.61, 0.06}
+\definecolor{colour8}{rgb}{0.0, 1.0, 0.5}
+\definecolor{colour9}{rgb}{0.99, 0.56, 0.67}
+\definecolor{colour10}{rgb}{0.76, 0.69, 0.57}
+\definecolor{colour11}{rgb}{0.6, 0.81, 0.93}
+\definecolor{colour12}{rgb}{0.69, 0.61, 0.85}
+\usepackage{fontspec}
+\setmainfont{Lato}
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}{\Huge Square numbers}\end{center}
+\Large
+
+\begin{multicols}{2}
+\begin{center}
+\begin{luacode*}
+gap = 0.1
+for i = 1, 12 do
+    tex.print("\\noindent" .. i .. " \\(\\times\\) " .. i .. " \\(=\\) " .. i*i .. "\\smallskip\\\\")
+    tex.print("\\begin{tikzpicture}[scale=0.45]")
+    for k = 1, i do
+        for j = 1, i do
+            tex.print("\\draw[fill=colour" .. i .. "] (" .. j-1+gap*j .. "," .. k-1+gap*k .. ") rectangle (" .. j+gap*j .. "," .. k+gap*k .. ");")
+        end
+    end
+    tex.print("\\end{tikzpicture}\\par")
+    if i == 8 then
+    tex.print("\\columnbreak")
+    end
+end
+\end{luacode*}
+\end{center}
+\end{multicols}
+
+
+\end{document}
+
+
